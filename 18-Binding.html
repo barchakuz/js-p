@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binding</title>
+</head>
+<body>
+    <button> Submit</button>
+</body>
+<script>
+    class Test{
+        constructor(){
+            this.name = "Web"
+            this.url = "https://www.facebook.com"
+            document
+            .querySelector('button')
+            .addEventListener('click',this.check.bind(this))
+            
+        }
+        check(){
+            console.log(`Test outout`);
+            console.log(this.url);
+            }
+    }
+        
+    const app = new Test()
+        
+    
+</script>
+</html>

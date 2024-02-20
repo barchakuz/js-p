@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keboard Checker</title>
+    <style>
+        body{
+            background-color: gray;
+            color: aliceblue;
+            font-family: sans-serif;
+        }
+        div {
+            text-align: center;
+        }
+        #result{
+            margin-left: 40%;
+            margin-right: 45%;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Keboard Checker</h1>
+        <div>
+            <table id="result">
+                <tr>
+                    <th>Name</th>
+                    <th>KeyCode</th>
+                    <th>Code</th>
+                </tr>
+                
+            </table>
+
+        </div>
+    </div>
+    
+</body>
+<script>
+    const result = document.getElementById('result');
+    window.addEventListener('keydown', (e) => {
+        result.innerHTML += `
+    
+            <tr>
+                <td>${e.key === ' ' ? 'Space': e.key}</td>
+                <td>${e.keyCode}</td>
+                <td>${e.code}</td>
+            </tr>
+
+        `;
+
+    });
+</script>
+</html>

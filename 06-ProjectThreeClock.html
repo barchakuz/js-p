@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 3</title>
+    <style>
+        body{
+            background-color: grey;
+            font-size: x-large;
+            font-weight: bold;
+            color: aliceblue;
+            text-align: center;
+        }
+        #clock{
+            height: 30px;
+            width: 200px;
+            background-color: orange;
+            margin: auto;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <p>Your Local Time</p>
+    <p id="clock"></p>
+</body>
+<script>
+    const clock = document.querySelector('#clock');
+    setInterval(() => {
+        let date = new Date();
+        clock.innerHTML = date.toLocaleTimeString();
+        
+    }, 1000);
+</script>
+</html>

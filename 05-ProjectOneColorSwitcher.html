@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project One</title>
+    <style>
+        .main{
+            text-align: center;
+        }
+        .block{
+            font-size: x-large;
+            color: #fff;
+            border: 1px solid black;
+            height: 90px;
+            width: 90px;
+            text-align: center;
+            margin: 2px;
+        }
+        #Red{
+            background-color: Red;
+        }
+        #Blue{
+            background-color: Blue;
+        }
+        #Green{
+            background-color: Green;
+        }
+        #Gray{
+            background-color: Gray;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h1> Color Switcher</h1>
+        <button onclick="Red()" class="block" id="Red">Red</button>
+        <button onclick="Blue()" class="block" id="Blue">Blue</button>
+        <button onclick="Green()" class="block" id="Green">Green</button>
+        <button onclick="Gray()" class="block" id="Gray">Gray</button>
+    </div>
+</body>
+<script>
+    function Red(){
+        const body = document.querySelector('body');
+        body.style.backgroundColor = "Red";
+    }
+    function Green(){
+        const body = document.querySelector('body');
+        body.style.backgroundColor = "Green";
+    }
+    function Blue(){
+        const body = document.querySelector('body');
+        body.style.backgroundColor = "Blue";
+    } function Gray(){
+        const body = document.querySelector('body');
+        body.style.backgroundColor = "Gray";
+    }
+</script>
+</html>

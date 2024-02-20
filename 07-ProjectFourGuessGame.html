@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess Game</title>
+    <style>
+        body{
+            background-color: gray;
+            color: #fff;
+        }
+        .input, .output{
+            text-align: center;
+            padding: 2px;
+            font-weight: bolder;
+            font-size: x-large;
+        }
+        #inputData{
+            height: 40px;
+            width: 350px;
+            border-radius: 10px;
+        }
+        ::placeholder{
+            font-size: larger;
+            color: gray;
+            font-weight: bold;
+        }
+        input[type=button]{
+            height: 90px;
+            width: 270px;
+            border-radius: 10px;
+            font-size: xxx-large;
+            background-color: orange;
+            color: #fff;
+            font-weight: bold;
+            border: none;
+        }
+        input[type=button]:hover{
+            border: 6px  solid greenyellow;
+        }
+        input[type=reset]{
+            height: 50px;
+            width: 200px;
+            border-radius: 10px;
+            font-size: x-large;
+            background-color: rgb(255, 0, 0);
+            color: #fff;
+            font-weight: bold;
+            border: none;
+        }
+        input[type=reset]:hover{
+            border: 6px  solid rgb(240, 194, 27);
+        }
+        #head{
+            text-shadow: 10px 5px 5px #212121;
+        }
+
+    </style>
+</head>
+<body>
+    <form class="myForm">
+        <div class="input">
+            <h1 id="head">Guess a number between 0 and 100</h1>
+            <label for="inputData">Enter Number </label>
+            <input type="text" name="inputData" id="inputData" placeholder="Number">
+            <br><br>
+            <input type="button" id="submit" value="Enter"><br><br>
+            <input type="reset" value="Restart Game" onclick="reStart()">
+
+        </div>
+        <div class="output">
+            <br>
+                <span>Previous Numbers are : </span>
+                <span id="PN"> </span>
+                <br><br>
+                <span>Remaining Attempts : </span>
+                <span id="R">10 </span>
+                <br><br>
+                <span id="result"></span>
+
+        </div>
+    </form>
+</body>
+<script>
+    function reStart(){
+       location.reload();
+    }
+    const Num = (Math.random() * 100 + 1).toFixed(0);
+    console.log(Num)
+    const submit = document.querySelector('#submit');
+    const PN = document.querySelector('#PN');
+    const R = document.querySelector('#R');
+    const W = document.querySelector('#result');
+    let preNumber = [];
+    let Remain = 10;
+    let playGame = true;
+    if(playGame){
+        submit.addEventListener('click', function(e){
+            e.preventDefault();
+            const inputData = document.querySelector('#inputData').value;
+            if(isNaN(inputData)){
+                console.log('Please inter Number')
+            }else if(inputData <= 0){
+                console.log('Please enter number Greater then 0');
+            }else if(inputData > 100) {
+                console.log('Please enter number smailler then 100')
+            }
+            else{
+                
+                if(Num != inputData){
+                    if(Remain < 1){
+                        W.style.color = 'Red';
+                        W.style.fontSize = '60px';
+                        W.innerHTML = "You Lost, Try again";
+                        submit.disabled = true;
+                        if(submit.disabled){
+                            playGame = false;
+                            submit.style.backgroundColor = 'hsla(9, 100%, 64%, 0.5)';
+                        }
+                        
+                    }else{
+                        preNumber.push(inputData);
+                        Remain = Remain - 1;
+                        if(Num > inputData){
+                            W.style.fontSize = '30px';
+                            W.style.color = 'Yellow';
+                            W.innerHTML = " Try Again! Number is Too Low";
+                        }else if(Num < inputData){
+                            W.style.fontSize = '30px';
+                            W.style.color = 'Yellow';
+                            W.innerHTML = " Try Again! Your is Too Hight";
+                        }
+                        PN.innerHTML = preNumber;
+                        R.innerHTML = Remain;
+                    }
+                } else if (Num === inputData && Remain > 0){
+                         W.style.color = 'Green';
+                         W.style.fontSize = '60px';
+                         W.innerHTML = "Congratulation";
+                         submit.disabled = true;
+                         if(submit.disabled){
+                            playGame = false;
+                            submit.style.backgroundColor = 'hsla(9, 100%, 64%, 0.5)';
+                        }
+                    }
+            }
+        })
+    }
+</script>
+</html>

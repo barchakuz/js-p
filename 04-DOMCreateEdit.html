@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM edit</title>
+</head>
+<body>  
+    <ul class="list">
+        <li>Dawn</li>
+        <li>BBC</li>
+        <li>CNN</li>
+        <li>ARY</li>
+    </ul>
+    <label for="New">Add</label>
+    <input type="text" id="New" name="New" placeholder="Add Channel">
+    <button onclick="add()">Add</button>
+    <br><br>
+    <label for="Edit">Edit</label>
+    <input type="text" id="Edit" name="Edit" placeholder="Edit Name">
+    <button onclick="edit()">Edit</button>
+    <br><br>
+    <button onclick="remove()" >Remove</button>
+</body>
+<script>
+    function add(){
+        const list = document.querySelector('.list');
+        const temp = document.createElement('li');
+        const inputField = document.getElementById('New');
+        console.log(inputField.value.length)
+        if(inputField.value.length <= 0){
+            inputField.value = null;
+        }else{
+            temp.textContent = inputField.value;
+            list.appendChild(temp);
+            inputField.value = '';
+        }
+        
+    }
+   function edit(){
+        const list = document.querySelector('.list');
+        const Num = Number(list.children.length);
+        const temp = document.createElement('li');
+        const target = list.children[Num-1];
+        const inputField = document.getElementById('edit');
+        temp.textContent = inputField.value;
+         target.replaceWith(temp);
+
+    }
+    function remove(){
+        const list = document.querySelector('.list');
+        const Num = Number(list.children.length);
+        const target = Num-1;
+        list.children[target].remove();
+    }
+
+</script>  
+</html>

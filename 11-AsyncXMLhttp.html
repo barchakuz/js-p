@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML</title>
+    <style>
+
+        div{
+           margin-left: 20%;
+            border: 2px solid black;
+            text-align: center;
+            padding: 3%;
+            width: 50%;
+            background-color: gray;
+            color: aliceblue;
+        }
+        input{
+            height: 40px;
+            width: 290px;
+            font-family: Impact;
+            border-radius: 10px;
+        }
+        label{
+            font-size: large;
+        }
+        button{
+            height: 50px;
+            width: 190px;
+            font-family: Impact;
+            background-color: orange;
+            border-radius: 10px;
+            font-size: large;
+            border: none;
+
+        }
+        button:hover{
+            background-color: red;
+        }
+        button:active{
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img alt="Profile Pic" id="image" height="50px" width="50px">
+        <h1 id="name">Name : </h1>
+        <h1 id="location">Location : </h1>
+        <h1 id="contact">Twitter : </h1>
+        <label for="target">Enter API</label>
+        <input type="text" id="target" placeholder="URL">
+        <br><br>
+        <button>Generate Data</button>
+    </div>
+    
+</body>
+<script>
+    const button = document.querySelector('button');
+    button.addEventListener('click', function(e){
+    const requestURL = document.getElementById('target').value;
+    const img = document.getElementById('image');
+    const name = document.getElementById('name');
+    const location = document.getElementById('location');
+    const contact = document.getElementById('contact');
+    //const requestURL = 'https://api.github.com/users/barchakuz?tab=projects';
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET',requestURL);
+    xhr.onreadystatechange = function(){
+        console.log(xhr.readyState);
+        if(xhr.readyState === 4){
+                const data = JSON.parse(this.responseText);
+                console.log(data);
+                img.setAttribute('src', data.avatar_url);
+                name.innerHTML += data.name;
+                location.innerHTML += data.location;
+                contact.innerHTML += data.twitter_username;
+            }
+    }
+    xhr.send();
+   
+
+    })
+    
+</script>
+</html>
